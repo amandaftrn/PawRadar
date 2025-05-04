@@ -36,31 +36,31 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
 
   final List<ServiceCategory> categories = [
     ServiceCategory(
-      name: 'Veterinary',
+      name: 'Dokter Hewan',
       icon: Icons.medical_services,
       services: [
         Service(
-          name: 'General Check-up',
-          description: 'Complete health examination for your pet',
-          price: '\$50',
+          name: 'Pemeriksaan umum',
+          description: 'Pemeriksaan kesehatan lengkap untuk hewan peliharaan',
+          price: 'Rp 150.000',
           icon: Icons.health_and_safety,
         ),
         Service(
-          name: 'Vaccination',
-          description: 'Essential vaccines for disease prevention',
-          price: '\$30 - \$45',
+          name: 'Vaksinasi',
+          description: 'Vaksin untuk mencegah penyakit',
+          price: 'Rp 100.000 - Rp 250.000',
           icon: Icons.vaccines,
         ),
         Service(
-          name: 'Dental Care',
-          description: 'Cleaning and dental health maintenance',
-          price: '\$80',
+          name: 'Perawatan Gigi',
+          description: 'Pembersihan dan perawatan kesehatan gigi',
+          price: 'Rp 300.000',
           icon: Icons.clean_hands,
         ),
         Service(
-          name: 'Surgery',
-          description: 'Various surgical procedures',
-          price: 'Varies',
+          name: 'Operasi',
+          description: 'Berbagai prosedur operasi',
+          price: 'Bervariasi',
           icon: Icons.medical_services,
         ),
       ],
@@ -70,87 +70,87 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
       icon: Icons.spa,
       services: [
         Service(
-          name: 'Bath & Brush',
-          description: 'Basic bath and brushing service',
-          price: '\$35',
+          name: 'Mandi & Sisir',
+          description: 'Layanan mandi dan penyisiran',
+          price: 'Rp 100.000',
           icon: Icons.shower,
         ),
         Service(
-          name: 'Full Groom',
-          description: 'Complete grooming package including haircut',
-          price: '\$60',
+          name: 'Grooming Lengkap',
+          description: 'Paket grooming lengkap, sudah termasuk potong rambut',
+          price: 'Rp 200.000',
           icon: Icons.content_cut,
         ),
         Service(
-          name: 'Nail Trimming',
-          description: 'Professional nail trimming service',
-          price: '\$15',
+          name: 'Potong Kuku',
+          description: 'Layanan potong kuku profesional',
+          price: 'Rp 50.000',
           icon: Icons.content_cut,
         ),
         Service(
-          name: 'Ear Cleaning',
-          description: 'Gentle ear cleaning service',
-          price: '\$20',
+          name: 'Pembersihan Telinga',
+          description: 'Layanan pembersihan telinga',
+          price: 'Rp 75.000',
           icon: Icons.clean_hands,
         ),
       ],
     ),
     ServiceCategory(
-      name: 'Training',
+      name: 'Pelatihan',
       icon: Icons.school,
       services: [
         Service(
-          name: 'Basic Obedience',
-          description: 'Essential commands and behavior training',
-          price: '\$45/session',
+          name: 'Pelatihan Dasar',
+          description: 'Perintah dasar dan pelatihan perilaku',
+          price: 'Rp 150.000/sesi',
           icon: Icons.pets,
         ),
         Service(
-          name: 'Puppy Training',
-          description: 'Early training for puppies',
-          price: '\$40/session',
+          name: 'Pelatihan Anak Anjing',
+          description: 'Pelatihan awal untuk anak anjing',
+          price: 'Rp 125.000/sesi',
           icon: Icons.child_care,
         ),
         Service(
-          name: 'Behavior Correction',
-          description: 'Address specific behavior problems',
-          price: '\$55/session',
+          name: 'Koreksi Perilaku',
+          description: 'Mengatasi masalah perilaku tertentu',
+          price: 'Rp 175.000/sesi',
           icon: Icons.psychology,
         ),
         Service(
-          name: 'Advanced Training',
-          description: 'Advanced commands and tricks',
-          price: '\$60/session',
+          name: 'Pelatihan Lanjutan',
+          description: 'Pelatihan lanjutan dan trik',
+          price: 'Rp 200.000/sesi',
           icon: Icons.military_tech,
         ),
       ],
     ),
     ServiceCategory(
-      name: 'Boarding',
+      name: 'Penitipan',
       icon: Icons.hotel,
       services: [
         Service(
-          name: 'Day Care',
-          description: 'Supervised play and care during the day',
-          price: '\$25/day',
+          name: 'Penitipan Harian',
+          description: 'Pengawasan dan perawatan sepanjang hari',
+          price: 'Rp 75.000/hari',
           icon: Icons.wb_sunny,
         ),
         Service(
-          name: 'Overnight Stay',
-          description: 'Comfortable overnight accommodation',
-          price: '\$45/night',
+          name: 'Menginap',
+          description: 'Akomodasi penginapan yang nyaman',
+          price: 'Rp 125.000/malam',
           icon: Icons.hotel,
         ),
         Service(
-          name: 'Extended Boarding',
-          description: 'Long-term boarding services',
-          price: '\$40/night',
+          name: 'Penitipan Jangka Panjang',
+          description: 'Layanan penitipan jangka panjang',
+          price: 'Rp 100.000/malam',
           icon: Icons.night_shelter,
         ),
         Service(
-          name: 'VIP Suite',
-          description: 'Premium boarding with extra amenities',
-          price: '\$60/night',
+          name: 'Paket VIP',
+          description: 'Penitipan premium dengan fasilitas ekstra',
+          price: 'Rp 200.000/malam',
           icon: Icons.star,
         ),
       ],
@@ -331,7 +331,7 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Description',
+                'Deskripsi',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -340,7 +340,7 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
               Text(service.description),
               SizedBox(height: 16.0),
               Text(
-                'Price',
+                'Harga',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -349,13 +349,13 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
               Text(service.price),
               SizedBox(height: 16.0),
               Text(
-                'Duration',
+                'Durasi',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(height: 8.0),
-              Text('30-60 minutes (varies)'),
+              Text('30-60 menit (bervariasi)'),
             ],
           ),
           actions: [
@@ -389,7 +389,7 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
       SnackBar(
         content: Text('Booking ${service.name} service...'),
         action: SnackBarAction(
-          label: 'View',
+          label: 'Lihat',
           onPressed: () {
             // Navigate to bookings page
           },
@@ -402,9 +402,9 @@ class _ServicesScreenState extends State<ServicesScreen> with SingleTickerProvid
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Booking Confirmation'),
+          title: Text('Konfirmasi Pemesanan'),
           content: Text(
-              'Your ${service.name} service has been booked successfully!'),
+              'Layanan ${service.name} berhasil dipesan!'),
           actions: [
             TextButton(
               onPressed: () {

@@ -26,15 +26,15 @@ class _PetListScreenState extends State<PetListScreen> {
     Pet(
       name: 'Max',
       breed: 'Golden Retriever',
-      age: '3 years',
-      gender: 'Male',
+      age: '3 tahun',
+      gender: 'Jantan',
       avatarColor: Colors.amber,
     ),
     Pet(
       name: 'Bella',
-      breed: 'Persian Cat',
-      age: '2 years',
-      gender: 'Female',
+      breed: 'Kucing Persia',
+      age: '2 tahun',
+      gender: 'Betina',
       avatarColor: Colors.pinkAccent,
     ),
   ];
@@ -114,14 +114,14 @@ class _PetListScreenState extends State<PetListScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        pet.gender == 'Male' ? Icons.pets : Icons.catching_pokemon,
+                        pet.gender == 'Jantan' ? Icons.pets : Icons.catching_pokemon,
                         size: 60,
                         color: pet.avatarColor,
                       ),
                       SizedBox(height: 8),
                       // Placeholder text for future camera feature
                       Text(
-                        "Tap to take photo",
+                        "Ketuk untuk mengambil foto",
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontSize: 12,
@@ -145,7 +145,7 @@ class _PetListScreenState extends State<PetListScreen> {
                     onPressed: () {
                       // Placeholder for camera functionality
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Camera feature coming soon!'))
+                          SnackBar(content: Text('Fitur kamera akan segera hadir!'))
                       );
                     },
                   ),
@@ -171,7 +171,7 @@ class _PetListScreenState extends State<PetListScreen> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                       decoration: BoxDecoration(
-                        color: pet.gender == 'Male'
+                        color: pet.gender == 'Jantan'
                             ? Colors.blue.withOpacity(0.1)
                             : Colors.pink.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12.0),
@@ -179,7 +179,7 @@ class _PetListScreenState extends State<PetListScreen> {
                       child: Text(
                         pet.gender,
                         style: TextStyle(
-                          color: pet.gender == 'Male' ? Colors.blue : Colors.pink,
+                          color: pet.gender == 'Jantan' ? Colors.blue : Colors.pink,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
@@ -196,7 +196,7 @@ class _PetListScreenState extends State<PetListScreen> {
                 ),
                 SizedBox(height: 4.0),
                 Text(
-                  'Age: ${pet.age}',
+                  'Umur: ${pet.age}',
                   style: TextStyle(
                     color: Colors.grey[700],
                   ),
@@ -207,23 +207,23 @@ class _PetListScreenState extends State<PetListScreen> {
                   children: [
                     _buildActionButton(
                       icon: Icons.event,
-                      label: 'Schedule',
+                      label: 'Jadwal',
                       color: Colors.orange,
                       onTap: () {
                         // Schedule appointment
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Schedule appointment for ${pet.name}'))
+                            SnackBar(content: Text('Jadwalkan janji untuk ${pet.name}'))
                         );
                       },
                     ),
                     _buildActionButton(
                       icon: Icons.history,
-                      label: 'History',
+                      label: 'Riwayat',
                       color: Colors.green,
                       onTap: () {
                         // View medical history
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('View ${pet.name}\'s history'))
+                            SnackBar(content: Text('Lihat riwayat ${pet.name}'))
                         );
                       },
                     ),
@@ -234,7 +234,7 @@ class _PetListScreenState extends State<PetListScreen> {
                       onTap: () {
                         // Edit pet info
                         ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Edit ${pet.name}\'s information'))
+                            SnackBar(content: Text('Edit informasi ${pet.name}'))
                         );
                       },
                     ),
@@ -280,37 +280,37 @@ class _PetListScreenState extends State<PetListScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add New Pet'),
+          title: Text('Tambahkan hewan baru'),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextField(
                   decoration: InputDecoration(
-                    labelText: 'Pet Name',
-                    hintText: 'Enter pet name',
+                    labelText: 'Nama Hewan',
+                    hintText: 'Masukan nama hewan',
                   ),
                 ),
                 SizedBox(height: 16.0),
                 TextField(
                   decoration: InputDecoration(
-                    labelText: 'Breed',
-                    hintText: 'Enter breed',
+                    labelText: 'Jenis',
+                    hintText: 'Masukan jenis/ras',
                   ),
                 ),
                 SizedBox(height: 16.0),
                 TextField(
                   decoration: InputDecoration(
-                    labelText: 'Age',
-                    hintText: 'Enter age (e.g., 2 years)',
+                    labelText: 'Umur',
+                    hintText: 'Masukkan umur (mis: 2 tahun',
                   ),
                 ),
                 SizedBox(height: 16.0),
                 DropdownButtonFormField<String>(
                   decoration: InputDecoration(
-                    labelText: 'Gender',
+                    labelText: 'Jenis Kelamin',
                   ),
-                  items: ['Male', 'Female'].map((String value) {
+                  items: ['Jantan', 'Betina'].map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -336,7 +336,7 @@ class _PetListScreenState extends State<PetListScreen> {
                         Icon(Icons.camera_alt, size: 40, color: Colors.grey),
                         SizedBox(height: 8),
                         Text(
-                          "Camera feature coming soon",
+                          "Fitur kamera akan segera hadir!",
                           style: TextStyle(color: Colors.grey[600]),
                         ),
                       ],
@@ -358,7 +358,7 @@ class _PetListScreenState extends State<PetListScreen> {
                 // Add pet logic here
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('New pet added successfully!'))
+                    SnackBar(content: Text('Sukses menambahkan hewan baru!'))
                 );
               },
               child: Text('Add'),

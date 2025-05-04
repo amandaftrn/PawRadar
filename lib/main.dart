@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('PawRadar Settings'),
-          content: Text('Would you like to update your notifications preferences?'),
+          content: Text('Apakah Anda ingin memperbarui preferensi notifikasi?'),
           actions: [
             TextButton(
               child: Text('Cancel'),
@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
               child: Text('Yes'),
               onPressed: () {
                 Navigator.of(context).pop();
-                _showToast(context, 'Settings will be updated soon!');
+                _showToast(context, 'Pengaturan akan segera diperbarui!');
               },
             ),
           ],
