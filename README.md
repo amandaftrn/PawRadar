@@ -1,6 +1,6 @@
 # mobile_programming_app
 
-Aplikasi yang menggabungkan berbagai komponen untuk mata kuliah Mobile Programming
+PawRadar adalah aplikasi mobile bertema manajemen hewan peliharaan yang dikembangkan menggunakan Flutter. Aplikasi ini dirancang untuk membantu pengguna dalam mengelola informasi hewan, layanan, dan fitur pendukung lainnya. Project ini merupakan bagian dari pemenuhan tugas akhir mata kuliah Mobile Programming. Saat ini aplikasi masih dalam tahap pengembangan dan akan terus diperbarui hingga mencakup seluruh fitur yang ditugaskan, seperti Activity, Alert & Toast, TabView, ListView, Camera, Google Maps, Preferences, Threads, SMS Autofill, Grafik, Autocomplete, Spinner, serta Login & Register Page.
 
 ## Getting Started
 
