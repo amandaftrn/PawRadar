@@ -3,7 +3,7 @@ import 'screens/dashboard_screen.dart';
 import 'screens/pet_list_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/care_checklist_screen.dart';
-
+import 'screens/preferences_menu_screen.dart';
 
 void main() {
   runApp(MobileProgApp());
@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
     PetListScreen(),
     ServicesScreen(),
     CareChecklistScreen(),
+    PreferencesMenuScreen(),
   ];
 
   final List<String> _titles = [
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     'My Pets',
     'Services',
     'Care Checklist',
+    'Settings',
   ];
 
   @override
@@ -66,8 +68,10 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              // Show alert dialog
-              _showAlertDialog(context);
+              // Navigate to settings instead of showing dialog
+              setState(() {
+                _currentIndex = 4; // Navigate to PreferencesMenuScreen
+              });
             },
           ),
         ],
@@ -100,6 +104,10 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.check_box),
             label: 'Checklist',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
       ),
     );
@@ -115,33 +123,6 @@ class _HomePageState extends State<HomePage> {
           onPressed: scaffold.hideCurrentSnackBar,
         ),
       ),
-    );
-  }
-
-  void _showAlertDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('PawRadar Settings'),
-          content: Text('Apakah Anda ingin memperbarui preferensi notifikasi?'),
-          actions: [
-            TextButton(
-              child: Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Yes'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                _showToast(context, 'Pengaturan akan segera diperbarui!');
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

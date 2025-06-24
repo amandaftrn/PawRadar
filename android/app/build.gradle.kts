@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "id.amandaftrn.mobileprog.mobile_programming_app"
+    namespace = "com.amandaftrn.pawradar"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "id.amandaftrn.mobileprog.mobile_programming_app"
+        applicationId = "com.amandaftrn.pawradar"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
