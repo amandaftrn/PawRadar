@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'threads_async_screen.dart';
 
 class PreferencesMenuScreen extends StatefulWidget {
   const PreferencesMenuScreen({Key? key}) : super(key: key);
@@ -49,6 +50,9 @@ class _PreferencesMenuScreenState extends State<PreferencesMenuScreen> {
 
             // Preferences Section
             _buildPreferencesSection(),
+
+            // Developer Tools Section
+            _buildDeveloperSection(),
 
             // About Section
             _buildAboutSection(),
@@ -318,6 +322,42 @@ class _PreferencesMenuScreenState extends State<PreferencesMenuScreen> {
             trailing: Icon(Icons.arrow_forward_ios),
             onTap: () {
               _showPrivacyDialog();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDeveloperSection() {
+    return Card(
+      margin: EdgeInsets.all(16),
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Text(
+              'Developer Tools',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          _buildMenuTile(
+            icon: Icons.developer_mode,
+            title: 'Async Demo',
+            subtitle: 'Test async operations and threading',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ThreadsAsyncScreen(),
+                ),
+              );
             },
           ),
         ],

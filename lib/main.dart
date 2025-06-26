@@ -4,12 +4,13 @@ import 'screens/pet_list_screen.dart';
 import 'screens/services_screen.dart';
 import 'screens/care_checklist_screen.dart';
 import 'screens/preferences_menu_screen.dart';
+import 'screens/threads_async_screen.dart';
 
 void main() {
-  runApp(MobileProgApp());
+  runApp(PawRadarApp());
 }
 
-class MobileProgApp extends StatelessWidget {
+class PawRadarApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +41,6 @@ class _HomePageState extends State<HomePage> {
     PetListScreen(),
     ServicesScreen(),
     CareChecklistScreen(),
-    PreferencesMenuScreen(),
   ];
 
   final List<String> _titles = [
@@ -48,7 +48,6 @@ class _HomePageState extends State<HomePage> {
     'My Pets',
     'Services',
     'Care Checklist',
-    'Settings',
   ];
 
   @override
@@ -69,9 +68,12 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.settings),
             onPressed: () {
               // Navigate to settings instead of showing dialog
-              setState(() {
-                _currentIndex = 4; // Navigate to PreferencesMenuScreen
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PreferencesMenuScreen(),
+                ),
+              );
             },
           ),
         ],
@@ -103,10 +105,6 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.check_box),
             label: 'Checklist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
           ),
         ],
       ),
