@@ -1,4 +1,6 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Pet {
   final String name;
@@ -6,6 +8,7 @@ class Pet {
   final String age;
   final String gender;
   final Color avatarColor;
+  final Uint8List? imageBytes;
 
   Pet({
     required this.name,
@@ -13,6 +16,7 @@ class Pet {
     required this.age,
     required this.gender,
     required this.avatarColor,
+    this.imageBytes,
   });
 }
 
@@ -70,7 +74,7 @@ class _PetListScreenState extends State<PetListScreen> {
               padding: EdgeInsets.all(16.0),
               itemCount: _pets.length,
               itemBuilder: (context, index) {
-                return _buildPetCard(_pets[index]);
+                return _buildPetCard(_pets[index], index);
               },
             ),
           ),
@@ -86,7 +90,7 @@ class _PetListScreenState extends State<PetListScreen> {
     );
   }
 
-  Widget _buildPetCard(Pet pet) {
+  Widget _buildPetCard(Pet pet, int index) {
     return Card(
       margin: EdgeInsets.only(bottom: 16.0),
       elevation: 2,
@@ -99,58 +103,100 @@ class _PetListScreenState extends State<PetListScreen> {
           // Pet Avatar/Image Area - Will be replaced with camera image later
           Stack(
             children: [
-              Container(
-                height: 150,
-                decoration: BoxDecoration(
-                  color: pet.avatarColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.0),
-                    topRight: Radius.circular(12.0),
-                  ),
-                ),
-                width: double.infinity,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        pet.gender == 'Jantan' ? Icons.pets : Icons.catching_pokemon,
-                        size: 60,
-                        color: pet.avatarColor,
-                      ),
-                      SizedBox(height: 8),
-                      // Placeholder text for future camera feature
-                      Text(
-                        "Ketuk untuk mengambil foto",
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              // Camera button overlay
-              Positioned(
-                right: 10,
-                top: 10,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.8),
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    icon: Icon(Icons.camera_alt),
-                    onPressed: () {
-                      // Placeholder for camera functionality
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Fitur kamera akan segera hadir!'))
+              InkWell(
+                onTap: pet.imageBytes == null
+                    ? () async {
+                  final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+                  if (pickedFile != null) {
+                    final bytes = await pickedFile.readAsBytes();
+                    setState(() {
+                      _pets[index] = Pet(
+                        name: pet.name,
+                        breed: pet.breed,
+                        age: pet.age,
+                        gender: pet.gender,
+                        avatarColor: pet.avatarColor,
+                        imageBytes: bytes,
                       );
-                    },
+                    });
+                  }
+                }
+                    : null,
+                child: pet.imageBytes != null
+                    ? ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
+                  ),
+                  child: Image.memory(
+                    pet.imageBytes!,
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                )
+                    : Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: pet.avatarColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12.0),
+                      topRight: Radius.circular(12.0),
+                    ),
+                  ),
+                  width: double.infinity,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          pet.gender == 'Jantan' ? Icons.pets : Icons.catching_pokemon,
+                          size: 60,
+                          color: pet.avatarColor,
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          "Ketuk untuk ambil foto",
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
+              if (pet.imageBytes != null)
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.9),
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      icon: Icon(Icons.edit, size: 20),
+                      onPressed: () async {
+                        final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+                        if (pickedFile != null) {
+                          final bytes = await pickedFile.readAsBytes();
+                          setState(() {
+                            _pets[index] = Pet(
+                              name: pet.name,
+                              breed: pet.breed,
+                              age: pet.age,
+                              gender: pet.gender,
+                              avatarColor: pet.avatarColor,
+                              imageBytes: bytes,
+                            );
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ),
             ],
           ),
           Padding(
@@ -329,15 +375,21 @@ class _PetListScreenState extends State<PetListScreen> {
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: Center(
+                  child: InkWell(
+                    onTap: () async {
+                      final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+                      if (pickedFile != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Berhasil ambil foto untuk hewan baru!'))
+                        );
+                      }
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.camera_alt, size: 40, color: Colors.grey),
                         SizedBox(height: 8),
-                        Text(
-                          "Fitur kamera akan segera hadir!",
-                          style: TextStyle(color: Colors.grey[600]),
+                        Text("Ketuk untuk ambil foto", style: TextStyle(color: Colors.grey[600]),
                         ),
                       ],
                     ),
